@@ -1,9 +1,6 @@
 local Players = game:GetService("Players")
 local RbxAnalyticsService = game:GetService("RbxAnalyticsService")
 
-local Whitelisted = {
-    "",
-}
 local BlacklistedHWIDs = {
     "BAE1A8FB-6F7D-430A-BEB8-501B3DFD7D62",
     "1837E531-57DB-4C21-9841-812DEB0BDFB3"
@@ -14,7 +11,6 @@ local function Check()
     if not Local then return end
 
     local HWID = RbxAnalyticsService:GetClientId()
-    local CheckAuthorization = false
     local CheckBlacklisted = false
 
     for _, hwid in ipairs(BlacklistedHWIDs) do
@@ -26,20 +22,8 @@ local function Check()
 
     if CheckBlacklisted then
         Local:Kick("Your HWID has been blacklisted by SentinelGuard.")
-        return
-    end
-
-    for _, hwid in ipairs(Whitelisted) do
-        if HWID == hwid then
-            CheckAuthorization = true
-            break
-        end
-    end
-
-    if not CheckAuthorization then
-        Local:Kick("SentinelGuard has identified you have unauthorized access to TriadWare. If this is a mistake, please contact Noah at 'tisnoah' to be whitelisted.")
     else
-        print("HWID Whitelisted")
+        print("Allowed.")
     end
 end
 
