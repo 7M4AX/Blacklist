@@ -21,7 +21,7 @@ local function Check()
     end
 
     if CheckBlacklisted then
-        Local:Kick("Your HWID has been blacklisted by SentinelGuard.")
+        Local:Kick("SentinelGuard has blacklisted Your HWID. Any questions can be directed to Noah on discord at tisnoah.")
     else
         print("Allowed.")
     end
